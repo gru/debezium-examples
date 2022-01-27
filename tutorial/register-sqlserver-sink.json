@@ -1,0 +1,19 @@
+{
+  "name": "jdbc-sqlserver-sink",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "tasks.max": "1",
+    "topics": "testDB.dbo.customers",
+    "connection.url": "jdbc:sqlserver://destination:1433;databaseName=testDB;",
+    "connection.user": "sa",
+    "connection.password": "Password!",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "false",
+    "auto.create": "true",
+    "insert.mode": "upsert",
+    "delete.enabled": "true",
+    "pk.fields": "id",
+    "pk.mode": "record_key"
+  }
+}

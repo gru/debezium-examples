@@ -23,8 +23,17 @@ services:
      - MSSQL_PID=Standard
      - SA_PASSWORD=Password!
      - MSSQL_AGENT_ENABLED=true
+  destination:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    ports:
+     - 1444:1433
+    environment:
+     - ACCEPT_EULA=Y
+     - MSSQL_PID=Standard
+     - SA_PASSWORD=Password!
+     - MSSQL_AGENT_ENABLED=true
   connect:
-    image: debezium/connect:${DEBEZIUM_VERSION}
+    image: debezium-jdbc:latest
     ports:
      - 8083:8083
     links:
